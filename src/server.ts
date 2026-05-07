@@ -23,9 +23,11 @@ export const creareServer = () => {
             }
 
             return new Response(                                        //
-                `<html><body><h1>Socket.IO Server</h1></body></html>`,  // 
-                { headers: { "Content-Type": "text/html; charset=utf-8" } } // 
-            );  // 
+               Bun.file("./public/index.html"),
+                { 
+                    headers: { "Content-Type": "text/html; charset=utf-8" },
+                 } 
+            );  
         },
     });
 
