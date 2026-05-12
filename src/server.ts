@@ -8,14 +8,18 @@ export const creareServer = () => {
 
     const engine = new Engine({ path: SERVER_CONFIG.path });
 
-    io.bind(engine);
+io.bind(engine);
 
-    io.on("connection", (socket) => {
+io.on("connection", (socket) => {
     console.log(`Cliente conectado (socket.id): ${socket.id}`);
 
     socket.emit("saludo", "Hola desde el servidor");
 
     socket.on("chat", (msg)=> io.emit("chat", msg));
+})
+
+io.on("disconnect", (socket) => {
+    console.log(`Cliente desconectado: ${socket.id}`);
 })
 
     const { fetch: engineFetch, websocket } = engine.handler();
